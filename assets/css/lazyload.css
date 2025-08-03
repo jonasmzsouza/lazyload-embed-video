@@ -1,0 +1,98 @@
+/**
+ * Lazy Load Embed Video v1.0.0
+ * Autor: Jonas Souza
+ * Data: 2025-08-03
+ * Licença: MIT
+ * Repositório: https://github.com/jonasmzsouza/lazyload-embed-video *
+ */
+iframe {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  border: none;
+}
+
+/*****************************
+  *  VIDEO PLACEHOLDER
+  ******************************/
+.lev-placeholder {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.lev-placeholder:hover {
+  transform: scale(1.01);
+}
+
+.lev-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lev-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  transform: translate3d(-50%, -50%, 0);
+  background-color: #63a1d7;
+  border-radius: 50%;
+  transition: all 0.5s;
+}
+
+.lev-play:before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 20px 0 20px 30px;
+  border-color: transparent transparent transparent #ffffff;
+  position: absolute;
+  top: calc(50% - 20px);
+  left: calc(50% - 10px);
+}
+
+.lev-play:hover,
+.lev-play:focus {
+  background-color: #02509b;
+  border: none;
+  outline: none;
+  transition: all 0.5s;
+}
+
+.lev-placeholder.loaded .lev-play {
+  opacity: 0;
+}
+
+/*****************************
+  *  VIDEO BACKGROUND
+  ******************************/
+.lev-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.lev-background iframe {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 767.98px) {
+  .lev-background {
+    display: none;
+  }
+}
