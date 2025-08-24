@@ -1,5 +1,5 @@
 /**
- * Lazy Load Embed Video v1.0.0
+ * Lazy Load Embed Video v1.1.0
  * Autor: Jonas Souza
  * Data: 2025-08-03
  * Licença: MIT
@@ -14,15 +14,23 @@ document.addEventListener('DOMContentLoaded', () => {
   // Itera sobre cada placeholder para configurar o carregamento do vídeo
   placeholders.forEach(placeholder => {
     const rawUrl = placeholder.dataset.videoUrl;
+    const orientation = placeholder.classList.contains('portrait') ? 'portrait' : 'landscape';
     const provider = getVideoProvider(rawUrl);
     const videoId = getVideoIdAuto(rawUrl);
+
+    placeholder.classList.add(orientation);
 
     loadVideoThumbnail(rawUrl, placeholder);
 
     placeholder.addEventListener('click', () => {
       const iframe = document.createElement('iframe');
-      iframe.width = "560";
-      iframe.height = "315";
+      if (orientation === 'portrait') {
+        iframe.width = "315";
+        iframe.height = "560";
+      } else {
+        iframe.width = "560";
+        iframe.height = "315";
+      }
       iframe.allow = "accelerometer; autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; gyroscope; web-share";
       iframe.loading = "lazy";
       iframe.title = "Vídeo";

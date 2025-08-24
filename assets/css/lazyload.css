@@ -1,5 +1,5 @@
 /**
- * Lazy Load Embed Video v1.0.0
+ * Lazy Load Embed Video v1.1.0
  * Autor: Jonas Souza
  * Data: 2025-08-03
  * Licença: MIT
@@ -16,15 +16,25 @@ iframe {
   *  VIDEO PLACEHOLDER
   ******************************/
 .lev-placeholder {
+  --aspect-ratio: 16 / 9;
+
   position: relative;
   width: 100%;
   max-width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: var(--aspect-ratio);
   cursor: pointer;
   overflow: hidden;
   border-radius: 8px;
   background-color: #000;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.lev-placeholder.landscape {
+  --aspect-ratio: 16 / 9;
+}
+
+.lev-placeholder.portrait {
+  --aspect-ratio: 9 / 16;
 }
 
 .lev-placeholder:hover {
